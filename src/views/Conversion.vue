@@ -9,7 +9,12 @@
     <div>
       <label for="monedaOrigen">Moneda Origen</label>
       <select v-model="monedaOrigen" id="moneda" required>
-        <option v-for="(value, key) in monedas" :key="key" :value="value">
+        <option
+          v-for="(value, key) in monedas"
+          :key="key"
+          :value="value"
+          required
+        >
           {{ value }} ({{ key }})
         </option>
       </select>
@@ -17,7 +22,12 @@
     <div>
       <label for="monedaCambiar">Moneda Objetivo</label>
       <select v-model="monedaCambiar" id="modedaO" required>
-        <option v-for="(value, key) in monedas" :key="key" :value="value">
+        <option
+          v-for="(value, key) in monedas"
+          :key="key"
+          :value="value"
+          required
+        >
           {{ value }} ({{ key }})
         </option>
       </select>
@@ -25,7 +35,7 @@
     <button @click="cambiarDivisas" class="btn btn-success">Convertir</button>
     <div>
       <p>
-        {{ cambioDivisas }}
+        {{ cambioDivisas | convertFilter }}
       </p>
       <span>
         {{ amount }} {{ monedaOrigen.value }} ={{ cambioDivisas }}
@@ -45,7 +55,7 @@ export default {
       monedaOrigen: 0,
       monedaCambioSeleccionada: "",
       monedaCambiar: 0,
-      cambioDivisas: 0,
+      cambioDivisas: 0
     };
   },
   mounted() {
@@ -58,20 +68,20 @@ export default {
         .get(
           "https://openexchangerates.org/api/latest.json?app_id=c6b996f4498c444ebd6e44caf7e2be0c"
         )
-        .then((response) => (this.monedas = response.data.rates));
+        .then(response => (this.monedas = response.data.rates));
     },
     getDivisas() {
       axios
         .get(
           "https://openexchangerates.org/api/currencies.json?app_id=c6b996f4498c444ebd6e44caf7e2be0c"
         )
-        .then((response) => (this.monedaCambioSeleccionada = response.data));
+        .then(response => (this.monedaCambioSeleccionada = response.data));
     },
     cambiarDivisas() {
       this.cambioDivisas =
         (this.amount / this.monedaOrigen) * this.monedaCambiar;
-    },
-  },
+    }
+  }
 };
 </script>
 

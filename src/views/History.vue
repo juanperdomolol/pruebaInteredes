@@ -12,7 +12,7 @@
       <tbody>
         <tr v-for="(value, key) in history" :key="key">
           <th>{{ key }}</th>
-          <th>{{ value }}</th>
+          <th>{{ value | convertFilter }}</th>
         </tr>
       </tbody>
     </table>
