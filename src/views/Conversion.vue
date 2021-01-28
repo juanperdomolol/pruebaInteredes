@@ -7,7 +7,7 @@
     </div>
     <div>
       <label for="monedaOrigen">Moneda Origen</label>
-      <select v-model="monedaOrigen" id="moneda">
+      <select v-model="monedaOrigen" id="moneda" required>
         <option v-for="(value, key) in monedas" :key="key" :value="value">
           {{ value }} ({{ key }})
         </option>
@@ -15,7 +15,7 @@
     </div>
     <div>
       <label for="monedaCambio">Moneda Objetivo</label>
-      <select v-model="monedaCambiar" id="modedaO">
+      <select v-model="monedaCambiar" id="modedaO" required>
         <option v-for="(value, key) in monedas" :key="key" :value="value">
           {{ value }} ({{ key }})
         </option>
