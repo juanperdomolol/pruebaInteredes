@@ -1,5 +1,6 @@
 <template>
   <div>
+    <router-link to="/">Conversion</router-link>
     Fecha de consulta {{ fechaActual }}
     <table>
       <thead>
@@ -24,7 +25,7 @@ export default {
     return {
       history: {},
       nombres: {},
-      fechaActual: null,
+      fechaActual: null
     };
   },
   mounted() {
@@ -48,10 +49,10 @@ export default {
             this.fechaActual +
             ".json?app_id=c6b996f4498c444ebd6e44caf7e2be0c"
         )
-        .then((Response) => (this.history = Response.data.rates));
+        .then(Response => (this.history = Response.data.rates));
       // .then((Response) => console.log(Response.data));
     },
-    getNombres() {},
-  },
+    getNombres() {}
+  }
 };
 </script>
